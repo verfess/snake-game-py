@@ -1,0 +1,36 @@
+[project]
+name = "snake-game-py"
+version = "0.1.0"
+description = "Змейка в консоли на python"
+requires-python = ">=3.12"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.14",
+    "mypy>=1.18",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/snake_game"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+mypy_path = "src"
