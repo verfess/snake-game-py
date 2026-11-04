@@ -2,7 +2,7 @@
 
 from random import choice
 
-from snake_game.snake import Position, Snake
+from snake_game.snake import Snake, Position
 
 FOOD_PER_LEVEL = 5
 SPEED_INCREMENT = 1
@@ -80,7 +80,12 @@ class Game:
 
         x, y = self.snake.head()
 
-        hit_wall = x < 0 or x >= self.width or y < 0 or y >= self.height
+        hit_wall = (
+            x < 0
+            or x >= self.width
+            or y < 0
+            or y >= self.height
+        )
 
         if hit_wall or self.snake.collides_self():
             self._is_over = True
