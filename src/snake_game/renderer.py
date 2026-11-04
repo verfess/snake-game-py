@@ -37,18 +37,15 @@ class Renderer:
         body = set(game.snake.body)
 
         field = [
-            self.WALL_VERTICAL + "".join(
-                self._cell((x, y), head, game.food, body)
-                for x in range(game.width)
-            ) + self.WALL_VERTICAL
+            self.WALL_VERTICAL
+            + "".join(
+                self._cell((x, y), head, game.food, body) for x in range(game.width)
+            )
+            + self.WALL_VERTICAL
             for y in range(game.height)
         ]
 
-        border = (
-            self.CORNER
-            + self.WALL_HORIZONTAL * game.width
-            + self.CORNER
-        )
+        border = self.CORNER + self.WALL_HORIZONTAL * game.width + self.CORNER
 
         output = [
             border,

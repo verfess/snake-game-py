@@ -68,7 +68,8 @@ def test_level_and_speed_increase() -> None:
     assert game.score == FOOD_PER_LEVEL
     assert game.level == 2
     assert game.current_speed == 9
-    
+
+
 def test_game_ends_when_no_free_cells() -> None:
     """Игра заканчивается, если на поле не осталось свободных клеток."""
     game = Game(1, 1, 8)
