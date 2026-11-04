@@ -23,6 +23,22 @@ class Snake:
         """Возвращает координаты головы змейки."""
         return self.body[-1]
 
+    def next_head(self, dx: int, dy: int) -> Position:
+        """Определяет следующую позицию головы с учётом текущего направления."""
+
+        new_direction = (dx, dy)
+
+        if new_direction not in DIRECTIONS:
+            raise ValueError("Движение возможно только на одну клетку по оси.")
+
+        opposite = (-self.direction[0], -self.direction[1])
+
+        if len(self.body) > 1 and new_direction == opposite:
+            new_direction = self.direction
+
+        x, y = self.head()
+        return (x + new_direction[0], y + new_direction[1])
+
     def grow(self) -> None:
         """Откладывает удлинение: тело прибавит сегмент на следующем шаге."""
         self._segments_to_add += 1
