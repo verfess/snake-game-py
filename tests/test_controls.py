@@ -28,7 +28,8 @@ def test_pause_key() -> None:
 
 def test_unknown_key() -> None:
     assert KeyboardInput._map_key(b"x") is None
-    
+
+
 def test_wasd_keys() -> None:
     assert KeyboardInput._map_key(b"w") == UP
     assert KeyboardInput._map_key(b"s") == DOWN

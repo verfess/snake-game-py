@@ -22,7 +22,7 @@ class KeyboardInput:
 
         if key in keys:
             return keys[key]
-        
+
         wasd = {
             b"w": "up",
             b"s": "down",

@@ -1,4 +1,4 @@
-"""Отображение игрового поля и показателей."""
+"""Обновляет игровое поле и строку показателей."""
 
 from snake_game.game import Game
 from snake_game.snake import Position
@@ -31,7 +31,7 @@ class Renderer:
             return Renderer.BODY
         return Renderer.EMPTY
 
-    def render(self, game: Game) -> None:
+    def render(self, game: Game, is_pause: bool = False) -> None:
         """Рисует поле и текущие показатели игры."""
         head = game.snake.head()
         body = set(game.snake.body)
@@ -56,4 +56,22 @@ class Renderer:
             f"Скорость: {game.current_speed}",
         ]
 
-        print("\033[H" + "\n".join(output), end="", flush=True)
+        if is_pause:
+            output.append("ПАУЗА — нажми P, чтобы продолжить")
+
+        screen = "\033[H" + "\r\n".join(
+            line + "\033[K" for line in output
+        ) + "\033[J"
+
+        print(screen, end="", flush=True)
+
+    def render_game_over(self, game: Game) -> None:
+        """Показывает итоговый счёт и предложение сыграть ещё раз."""
+        output = [
+            "",
+            "ИГРА ОКОНЧЕНА",
+            f"Итоговый счёт: {game.score}",
+            "",
+            "Сыграть ещё раз? (y/n)",
+        ]
+        print("\033[H" + "\r\n".join(output), end="", flush=True)
