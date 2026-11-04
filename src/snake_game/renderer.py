@@ -59,9 +59,7 @@ class Renderer:
         if is_pause:
             output.append("ПАУЗА — нажми P, чтобы продолжить")
 
-        screen = "\033[H" + "\r\n".join(
-            line + "\033[K" for line in output
-        ) + "\033[J"
+        screen = "\033[H" + "\r\n".join(line + "\033[K" for line in output) + "\033[J"
 
         print(screen, end="", flush=True)
 
