@@ -72,4 +72,7 @@ class Renderer:
             "",
             "Сыграть ещё раз? (y/n)",
         ]
-        print("\033[H" + "\r\n".join(output), end="", flush=True)
+
+        screen = "\033[H" + "\r\n".join(line + "\033[K" for line in output) + "\033[J"
+
+        print(screen, end="", flush=True)
